@@ -158,7 +158,7 @@ You see, when you call:
 
     identity(42)
 
-And the definition of identity is 
+And the definition of identity is
 
     identity: func <T> (val: T) -> T
 
@@ -192,14 +192,7 @@ Then again, we could have done:
     dumbPrintTypeName(Object)
 
 Since we don't use T as a type anywhere. So why even bother with this <T>
-thing, hmm? Why does the compiler even allow it? I mean, it's so stupid - you
-don't need it! Man, the ooc crew must've smoked some really bad shit. I mean
-really bad. Like, this other night, I was at that bar, and the waiter said
-"ID, please", to which I answered: "Here's an idea, man - Eclipse." To which a
-silence of death followed.
-
-Anyway, if you still don't see the point of <T> in the example above, then...
-read on! You're not alone.
+thing, hmm? Why does the compiler even allow it? Read on if you want to find out.
 
 Generic return types
 --------------------
@@ -220,7 +213,10 @@ expression (that's useless, I mean - why even make a generic function in the
 first place? Too lazy to type out 'Int'? Yeah. Call me back when you have ABI
 incompatibilities because you changed a return expression. Or rather - don't.)
 
-So how do we make a function that 1) has a generic return type, let's say 'T'. 2) doesn't take an argument of type T ?
+So how do we make a function that
+
+  - has a generic return type, let's say 'T'
+  - doesn't take an argument of type T ?
 
 Well, that's precisely where that useless thing presented in the previous
 section comes in very handy:
@@ -241,6 +237,8 @@ section comes in very handy:
 What just happened? We used a match on 'T', which means we're comparing it.
 We're comparing it with the types 'Int', 'Float', 'String', trying to return
 expressions. And if it's none of these types, it just blows up.
+
+Note: in that case, our theAnswer function is pretty useless
 
 Generic classes
 ---------------
@@ -284,6 +282,23 @@ exactly?
 
 Well it turns out that Slot new is just a regular method call, the generic
 type T is inferred to 'Float', and so 's' becomes a Slot<Float>
+
+Hence, the compiler sees the get() call as:
+
+    Slot<Float> get()
+
+And it sees the get definition as
+
+    Sloat<T> get: func {}
+
+From here, inferring that T = Float is trivial.
+
+Advanced type inference
+-----------------------
+
+One of the most advanced example of type inference
+
+
 
 
 

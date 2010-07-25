@@ -1,0 +1,4 @@
+.libs
+*.swp
+*.swo
+*_tmp/

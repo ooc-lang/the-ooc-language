@@ -2,7 +2,7 @@ Tuples
 ======
 
 Intro
-=====
+-----
 
 This section is rather long, and begins with an explanation of the practical
 problem multi-return is supposed to solve.
@@ -14,12 +14,11 @@ Also, don't miss the last section on multi-variable declaration and assignment.
 
 
 The problem
-===========
+-----------
 
 How do we make a function that return several values?
 
-Using an array - minmax
------------------------
+### Using an array - minmax ###
 
 You can use an array:
 
@@ -47,8 +46,7 @@ We're using three lines only to retrieve results from a function.
 And what if minmax is changed to return only one value? The code will still
 compile but fail on result[1].
 
-Using a list of cells (ie. a Bag)
----------------------------------
+### Using a list of cells (ie. a Bag) ###
 
 Using an array doesn't allow different types, so
 
@@ -73,8 +71,7 @@ And to retrieve the values:
 Again, three lines, looks even uglier, no guarantees, not type-safe at
 compile-time. Don't do that.
 
-Using references
-----------------
+### Using references ###
 
 And here's the closest we'll come to a tolerable solution without using
 tuples: out-parameters. Let's rewrite the minmax example with it
@@ -103,10 +100,9 @@ That's valid ooc, won't be caught at compile-time, but will sure as hell crash.
 So it's not the perfect solution we're looking for.
 
 Multi-return using tuples - the solution
-========================================
+----------------------------------------
 
-Multiple return types
----------------------
+### Multiple return types ###
 
 Tuples can be used to return multiple values from a function. Let's
 rewrite our minmax function using that.
@@ -123,8 +119,7 @@ rewrite our minmax function using that.
     }
 
 
-Retrieving all values - multi-variable declaration
---------------------------------------------------
+### Retrieving all values - multi-variable declaration ###
 
 We can retrieve all values by using a decl-assign with a tuple
 on the left and a function call on the right
@@ -143,8 +138,7 @@ from the return type of the called function, just like regular decl-assign.
 There are ways to ignore some values, that are described in other sections.
 
 
-Ignoring all but the first value
---------------------------------
+### Ignoring all but the first value ###
 
 In the minmax example above, we can retrieve only min if we want:
 
@@ -158,8 +152,7 @@ Which leads to this rule: **when a function returning multiple values
 is used as if it returned only one, the first value is used.**
 
 
-Ignoring specific values - the '_' wildcard
--------------------------------------------
+### Ignoring specific values - the '_' wildcard ###
 
 What if we want only max? We can use '_' in place of a name, in a
 multi-variable declaration:
@@ -172,8 +165,7 @@ unwrapped first, with a multi-variable declaration.
 For that reason, **it's good design to declare return values from most
 interesting to least interesting**.
 
-The importance of return values order
--------------------------------------
+### The importance of return values order ###
 
 Take for example Process getOutput() in the sdk:
 
@@ -193,8 +185,7 @@ design.
 Be careful when designing APIs. Plan for growth. Listen to Guy Steele
 (and his 'Growing a Language' talk)
 
-The '_' wildcard in greedy mode
--------------------------------
+### The '_' wildcard in greedy mode ###
 
 We said above that the tuple and the return type of the function call
 on either side of a multi-variable decl-assign should match exactly.
@@ -231,7 +222,7 @@ Is actually equivalent to:
 
 
 Tuples beyond return - multi-declaration and multi-assign
-=========================================================
+---------------------------------------------------------
 
 Using tuples on both sides of the decl-assign operator (:=) or
 the assign operator (=) is valid.

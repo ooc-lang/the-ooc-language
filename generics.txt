@@ -296,8 +296,70 @@ From here, inferring that T = Float is trivial.
 Advanced type inference
 -----------------------
 
-One of the most advanced example of type inference
+One of the most advanced example of type inference in the whole SDK
+is probably the List map() function. Here is its signature (ie.
+definition without the body) :
 
+    map: func <K> (f: Func (T) -> K) -> This<K>
+
+So basically it turns a List<T> into a List<K>, by calling f to turn
+every T into a K. Makes sense.
+
+The question is now - how does the compiler infer K? The only info we have
+about it, is that it's the return type of function we pass as an argument
+to the function.
+
+Well - no big deal then, if we do:
+
+    intToString: func (i: Int) -> String { i toString() }
+    strings := numbers map(intToString)
+
+Then we know that K = String from the definition of intToString.
+
+But wait, there's a nice infers-everything syntax for closures, ie.:
+
+    stringsToo := numbers map(|x| x toString())
+
+And here, we're doomed. The closure insides attempts to infers its whole
+signature (argument types, return type, etc.) from the type of the
+corresponding argmuent in the map definition. But map doesn't provide
+a definitive answer, since the return type is generic.
+
+Hence, the compiler falls back to the only possible resolution of this
+madness: it infers K from the return expression inside the closure.
+
+This case is the *only case* where rock considers the return expression
+inside functions to infer any type at all.
+
+Under the hood
+--------------
+
+How does it work under the hood?
+
+Here is the naive implementation: generic type arguments as passed
+as function arguments, ie a call to:
+
+    ArrayList<Int> new()
+    identity(42)
+
+becomes (without mangling):
+
+    ArrayList_new(Int_class());
+    identity()
+
+
+Type arguments in classes become variables:
+
+    ArrayList: class <T> {}
+
+is
+
+    ArrayList: class {
+        T: Class
+    }
+
+Class type arguments are assigned in the constructor to the appropriate
+values.
 
 
 

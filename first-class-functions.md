@@ -53,7 +53,7 @@ are variables, and thus can be overwritten by simple assignment.
     someFunc = someOtherFunc
 
 The second difference is: first-class functions can capture context.
-Closures are firest-class functions that capture context.
+Closures are first-class functions that capture context.
 
     // here's a normal function
     clone: func (l: List<Int>) -> List<Int> {

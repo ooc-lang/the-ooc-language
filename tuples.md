@@ -96,7 +96,7 @@ Two lines is better, but what if we do:
 
     minmax(mylist, null, null)
 
-That's valid ooc, won't be caught at compile-time, but will sure as hell crash.
+That's valid ooc, won't be caught at compile-time, and yet crash.
 So it's not the perfect solution we're looking for.
 
 Multi-return using tuples - the solution
@@ -108,16 +108,17 @@ Tuples can be used to return multiple values from a function. Let's
 rewrite our minmax function using that.
 
     minmax: func (list: List<Int>) -> (Int, Int) {
-        min := INT_MAX
-        max := INT_MIN
-        for(i in list) {
+        (min, max) := (INT_MAX, INT_MIN)
+        list each(|i|
             if(i < min) min = i
             if(i > max) max = i
-        }
-
+        )
         (min, max)
     }
 
+The returned tuple and the declared function return type must
+match exactly (e.g. same number and types of elements). Any mismatch
+will result in a compile error.
 
 ### Retrieving all values - multi-variable declaration ###
 
@@ -126,8 +127,8 @@ on the left and a function call on the right
 
     (min, max) := minmax(mylist)
 
-The tuple and the return type of the function call must match exactly,
-any mismatch will result in a compile error.
+The tuple and the return type of the function call must match exactly
+(same numbers of elements). Any mismatch will result in a compile error.
 
 The tuple should only contain variable accesses - any other expression
 will result in a compile error.

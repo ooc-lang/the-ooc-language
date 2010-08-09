@@ -154,6 +154,64 @@ And is then equivalent to:
 
 The return type is inferred as well.
 
+Other differences - member functions vs member first-class functions
+--------------------------------------------------------------------
+
+    Dog: class {
+
+        shout: func {
+            "Woof woof" println()
+        }
+
+    }
+
+    d := Dog new()
+    d shout()
+
+    Dog shout = func {
+        "Ruff ruff" println()
+    }
+    d2 := Dog new()
+    d shout()
+    d2 shout()
+
+Prints:
+
+    Woof woof
+    Ruff ruff
+    Ruff ruff
+
+When assigning 'Dog shout', we change the member method of *all* past and
+future Dog instances. This happens because 'shout' is actually stored in the meta-class
+
+Consider the differences with that instead:
+
+    Dog: class {
+
+        shout := func {
+            "Woof woof" println()
+        }
+
+    }
+
+    d := Dog new()
+    d shout()
+
+    d shout = func {
+        "Ruff ruff" println()
+    }
+    d2 := Dog new()
+    d shout()
+    d2 shout()
+
+Prints:
+
+    Woof woof
+    Ruff ruff
+    Woof woof
+
+Here, 'shout' is a member variable. Assigning to 'd shout' changes it
+only for that instance, so d2 shout isn't changed.
 
 
 

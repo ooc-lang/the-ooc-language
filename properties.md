@@ -116,7 +116,7 @@ outside ooc code). Let's take an example for a well-known GTK widget:
 
         text: GChar* {
             set: extern(gtk_label_set_text)
-            get: extern(gtk_label_set_text)
+            get: extern(gtk_label_get_text)
         }
     }
 

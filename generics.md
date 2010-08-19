@@ -23,8 +23,8 @@ Why doesn't this work? It's because you can't do much with generic variables.
 The whole point is that *we don't know which type they are* until we run the
 program.
 
-One might instanciate a Vector2<Int> - in which case the + operator
-makes sense - but they could also instanciate a Vector2<Carrot>, where Carrot
+One might instanciate a Vector2\<Int\> - in which case the + operator
+makes sense - but they could also instanciate a Vector2\<Carrot\>, where Carrot
 wouldn't necessarily have a + operator.
 
 Besides, since ooc is statically typed, we wouldn't know which + operator
@@ -50,7 +50,7 @@ Woha. What just happened here? Let's recap line by line.
 Here, we declare a function named 'identity', with one type parameter named T,
 taking one parameter named 'val', and returning a value of type T.
 
-Type parameters are the names listed between the angular brackets < and >. You
+Type parameters are the names listed between the angular brackets \< and \>. You
 can have as many as you want (although if you have more than few of them,
 you're probably doing it wrong)
 
@@ -191,7 +191,7 @@ Then again, we could have done:
     dumbPrintTypeName: func (T: Class) { T name println() }
     dumbPrintTypeName(Object)
 
-Since we don't use T as a type anywhere. So why even bother with this <T>
+Since we don't use T as a type anywhere. So why even bother with this \<T\>
 thing, hmm? Why does the compiler even allow it? Read on if you want to find out.
 
 Generic return types
@@ -281,7 +281,7 @@ exactly?
     s := Slot new(3.14)
 
 Well it turns out that Slot new is just a regular method call, the generic
-type T is inferred to 'Float', and so 's' becomes a Slot<Float>
+type T is inferred to 'Float', and so 's' becomes a Slot\<Float\>
 
 Hence, the compiler sees the get() call as:
 
@@ -302,7 +302,7 @@ definition without the body) :
 
     map: func <K> (f: Func (T) -> K) -> This<K>
 
-So basically it turns a List<T> into a List<K>, by calling f to turn
+So basically it turns a List\<T\> into a List\<K\>, by calling f to turn
 every T into a K. Makes sense.
 
 The question is now - how does the compiler infer K? The only info we have

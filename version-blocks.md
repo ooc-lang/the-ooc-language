@@ -8,7 +8,9 @@ Version blocks use the following syntax:
 
 	version (<version expression>) {
 		<body>
-	}
+	} else {
+                <alternative body>
+        }
 
 Where <version expression> can be any of:
 
@@ -98,6 +100,13 @@ Examples
 	version(!windows && !apple && !linux) {
 		"Who are you, and what did you do to my OS?"
 	}
+
+
+        version(apple) {
+		"Nice Hardware!" println()
+	} else {
+                "So you like your computer made of plastic then!" println()
+        }
 
 See also io/File and os/Time in the SDK for real-world examples of heavily versioned code.
 

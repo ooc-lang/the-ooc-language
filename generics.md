@@ -322,7 +322,7 @@ But wait, there's a nice infers-everything syntax for closures, ie.:
 
 And here, we're doomed. The closure insides attempts to infers its whole
 signature (argument types, return type, etc.) from the type of the
-corresponding argmuent in the map definition. But map doesn't provide
+corresponding argument in the map definition. But map doesn't provide
 a definitive answer, since the return type is generic.
 
 Hence, the compiler falls back to the only possible resolution of this

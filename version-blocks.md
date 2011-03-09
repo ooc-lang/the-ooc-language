@@ -18,7 +18,7 @@ Where <version expression> can be any of:
 	!<version expression>
 	<version expression> && <version expression>
 	<version expression> || <version expression>
-	
+
 Semantics
 ---------
 
@@ -35,20 +35,20 @@ don't have to remember the convoluted corresponding C defines.
 For other compilers not based on the C language, version block handling may happen at any
 stage of the compilation (if any), as long as the version expressions are correctly evaluated
 and have the correct meaning (for example, a 'windows' version block should be ignored on OSX)
-	
+
 Built-in version names
 ----------------------
-	
+
 C defines are included here for completeness, but are only relevant for people who want
 to implement ooc on top of C.
-	
+
 |Name   |corresponding C define |
 |:-----:|:---------------------:|
 |windows|__WIN32__ || __WIN64__ |
 |linux  |__linux__              |
 |solaris|__sun                  |
 |unix   |__unix__               |
-|beos   |__BEOS__               | 
+|beos   |__BEOS__               |
 |haiku  |__HAIKU__              |
 |apple  |__APPLE__              |
 |gnuc   |__GNUC__               |
@@ -72,14 +72,14 @@ Custom version names can be used, and turned on/off with the -D and -U compiler 
 		"[%d] Saving database %s" println(timestamp(), db name)
 	}
 	db save()
-	
+
 The code inside the version(debug) block will be compiled if -Ddebug is used.
 
 Semantics continued
 -------------------
 
 Version blocks can be used in function bodies, to make certain parts of the code OS-specific, or
-they can be used at the mdule-level to make functions or types OS-specific.
+they can be used at the module-level to make functions or types OS-specific.
 
 If different types are defined in different version blocks, make sure they expose the same interface.
 It's not necessary for them to have the exact same class layout, but they should at least have all the
@@ -117,30 +117,30 @@ This allows an interesting pattern for OS-specific classes in ooc:
 
 	// io/File
 	import io/[FileUnix, FileWin32]
-	
+
 	File: class {
 		path: String
-	
+
 		new: static func (.path) -> This {
 			version(windows) { return FileWin32 new(path) }
 			version(unix)    { return FileUnix  new(path) }
 			Exception new(This, "Unsupported platform") throw()
 		}
-		
+
 		// abstract methods
 	}
 
 	// io/FileUnix
 	FileUnix: class extends File {
 		init: func (=path) {}
-		
+
 		// implement abstract methods for unix
 	}
-	
+
 	// io/FileWin32
 	FileWin32: class extends File {
 		init: func (=path) {}
-		
+
 		// implement abstract methods for Win32
 	}
 
@@ -151,5 +151,5 @@ This allows an interesting pattern for OS-specific classes in ooc:
 
 
 
-	
-	
+
+

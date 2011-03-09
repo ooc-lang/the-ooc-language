@@ -46,7 +46,7 @@ to implement ooc on top of C.
 |:-----:|:---------------------:|
 |windows|__WIN32__ || __WIN64__ |
 |linux  |__linux__              |
-|solaris|__sun                  |
+|solaris|__sun__                |
 |unix   |__unix__               |
 |beos   |__BEOS__               |
 |haiku  |__HAIKU__              |

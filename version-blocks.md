@@ -73,7 +73,8 @@ Custom version names can be used, and turned on/off with the -D and -U compiler 
 	}
 	db save()
 	
-The code inside the version(debug) block will be compiled if -Ddebug is used.
+The code inside the version(debug) block will be compiled if -Ddebug is used. It is common practise for ooc developers
+to use the -Ddebug switch to debug their applications.
 
 Semantics continued
 -------------------

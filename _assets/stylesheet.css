@@ -16,10 +16,11 @@ body
 
 a {
     color: #439893;
+    text-decoration: none;
 }
 
 a:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 header > h1 {

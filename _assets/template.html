@@ -88,19 +88,19 @@ $endfor$
         return;
         
         var pinned = false,
-            $toc   = document.getElementById( 'TOC' ),
+            toc    = document.getElementById( 'TOC' ),
             offset = 200;
         
         return function()
         {
             if( !pinned && document.body.scrollTop > offset )
             {
-                $toc.className = 'pinned';
+                toc.className = 'pinned';
                 pinned = true;
             }
             else if( pinned && document.body.scrollTop < offset )
             {
-                $toc.className = '';
+                toc.className = '';
                 pinned = false;
             }
         };

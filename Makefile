@@ -45,9 +45,11 @@ build:
 	@echo -n '-- Copying the required assets into the build folder...'
 	@cat $(TEMP_DIR)/highlight.css >> $(TEMP_DIR)/stylesheet.css
 	@git checkout gh-pages
+	@rm -f stylesheet.css index.html
 	@cp $(TEMP_DIR)/stylesheet.css ./
 	@cp $(TEMP_DIR)/index.html ./
-	@git commit -am "Update the documentation."
+	@git add .
+	@git commit -m "Update the documentation."
 	@echo ' Done.'
 
 clean:

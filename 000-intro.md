@@ -1,2 +1,5 @@
 
-# The ooc language
+Introduction
+============
+
+*Coming soon, hopefully.*

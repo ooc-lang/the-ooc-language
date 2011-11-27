@@ -6,19 +6,23 @@ Syntax
 
 Version blocks use the following syntax:
 
+~~~
 	version (<version expression>) {
 		<body>
 	} else {
 		<alternative body>
 	}
+~~~
 
 Where <version expression> can be any of:
 
+~~~
 	<version name>
 	!<version expression>
 	<version expression> && <version expression>
 	<version expression> || <version expression>
-	
+~~~
+
 Semantics
 ---------
 
@@ -68,11 +72,13 @@ on the compiler setting -gc=[off,static,dynamic].
 
 Custom version names can be used, and turned on/off with the -D and -U compiler flags, for example:
 
+~~~
 	version(debug) {
 		"[%d] Saving database %s" println(timestamp(), db name)
 	}
 	db save()
-	
+~~~
+
 The code inside the version(debug) block will be compiled if -Ddebug is used. It is common practise for ooc developers
 to use the -Ddebug switch to debug their applications.
 
@@ -89,6 +95,7 @@ methods/fields that are used in every OS.
 Examples
 --------
 
+~~~
 	version(windows) {
 		"Hi, Bill!" println()
 	}
@@ -107,6 +114,7 @@ Examples
 	} else {
 		"So you like your computer made of plastic then!" println()
 	}
+~~~
 
 See also io/File and os/Time in the SDK for real-world examples of heavily versioned code.
 
@@ -116,6 +124,7 @@ Pattern for OS-specific classes
 In ooc, 'new' isn't a keyword but a static method. As a result, you can define new yourself.
 This allows an interesting pattern for OS-specific classes in ooc:
 
+~~~
 	// io/File
 	import io/[FileUnix, FileWin32]
 	
@@ -144,13 +153,4 @@ This allows an interesting pattern for OS-specific classes in ooc:
 		
 		// implement abstract methods for Win32
 	}
-
-
-
-
-
-
-
-
-	
-	
+~~~

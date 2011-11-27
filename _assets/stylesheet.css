@@ -1,4 +1,7 @@
 
+@import url(http://fonts.googleapis.com/css?family=Radley:400&text=OC);
+@import url(http://fonts.googleapis.com/css?family=Lato400,700,900);
+
 /* Stylesheet */
 
 body
@@ -6,6 +9,31 @@ body
     font-size: 16px;
     font-family: Georgia, serif;
     line-height: 1.6;
+    width: 720px;
+    margin: 0 auto;
+}
+
+a {
+    color: #439893;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+header > h1 {
+    font-family: 'Radley', 'Lato';
+    font-weight: 400;
+    font-size: 5em;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lato';
+    font-weight: 400;
+}
+
+h1 > a, h2 > a, h3 > a, h4 > a {
+    text-decoration: none;
 }
 
 .highlight {

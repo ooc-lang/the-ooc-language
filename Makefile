@@ -32,7 +32,7 @@ md2html: concat preprocess
 				--toc \
 				--css=stylesheet.css \
 				--template=$(ASSETS_DIR)/template.html \
-				--include-before-body=_assets/header.html
+				--include-before-body=_assets/header.html \
 				-o $(BUILD_DIR)/$(HTML_OUTPUT) \
 				$(TEMP_DIR)/$(MD_OUTPUT)
 	@echo ' Done.'

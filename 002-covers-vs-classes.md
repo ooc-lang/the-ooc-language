@@ -1,3 +1,4 @@
+
 When to use covers and classes
 ==============================
 
@@ -17,6 +18,7 @@ By-reference, by-value
 
 Classes are by-references. Which means every object is a reference. Doing that:
 
+~~~
     Number: class {
         value: Int
         init: func (=value) {}
@@ -33,6 +35,7 @@ Classes are by-references. Which means every object is a reference. Doing that:
     answer := Number new(42)
     modify(answer) // does nothing
     modifyInside(answer)
+~~~
 
 What happens in 'modifyRef' is that we change what 'n' refers to in the
 modifyRef function. It doesn't modify what 'n' referred to in the first place,
@@ -50,24 +53,29 @@ Covers are trickier. There are two types of covers: primitive covers, and compou
 Primitive covers allow to add methods to an existing type. For implementations
 of ooc on top of C, it means you can do stuff like:
 
+~~~
     Int: cover from int
+~~~
 
 And it's actually the way all C types are used from ooc.
 
 As a consequence, covers are by-value. Which means that
 
+~~~
     modify: func (i: Int) {
         i = -1
     }
 
     answer := 42
     modify(answer)
+~~~
 
 Doesn't modify answer.
 
 But compound covers (you can think of them as structs) are also by value,
 which means that:
 
+~~~
     Number: cover {
         value: Int
     }
@@ -80,6 +88,7 @@ which means that:
     answer value = 42
 
     modifyInside(answer)
+~~~
 
 Won't modify 'answer' at all, but a *copy* of it that has been
 passed to 'modifyInside'.
@@ -88,18 +97,22 @@ As an interesting side effect, a 'clone' method is futile for covers.
 
 It also means that this won't work:
 
+~~~
     Number: cover {
         value: Int
         init: func (=value) {}
     }
+~~~
 
 Because init will be working on a *copy* of the object, thus leaving
 the original object unmodified. That's why func@ exists, ie.:
 
+~~~
     Number: cover {
         value: Int
         init: func@ (=value) {}
     }
+~~~
 
 Where 'this' will be passed by reference. Same goes for any cover method
 that modifies its content.
@@ -109,15 +122,19 @@ Heap allocation, stack allocation
 
 When you do
 
+~~~
     NumberClass: class {}
     n := NumberClass new()
+~~~
 
 n may be allocated on the heap or on the stack, however the compiler sees fit.
 
 However, with:
 
+~~~
     NumberCover: cover {}
     n: NumberCover
+~~~
 
 n is allocated on the stack.
 
@@ -174,6 +191,7 @@ Stack-allocated variables are deallocated when they go out of scope.
 
 What does that mean? It means that this code is wrong.
 
+~~~
     getAnswer: func -> Int* {
         // answer is allocated on the stack
         answer := 42
@@ -186,9 +204,11 @@ What does that mean? It means that this code is wrong.
 
     answerPtr := getAnswer()
     "answer = %d" printfln(answerPtr@)
+~~~
 
 Whereas this one will work perfectly:
 
+~~~
     getAnswer: func -> Int* {
         // answer is allocated on the heap
         answer := gc_malloc(Int size)
@@ -202,6 +222,7 @@ Whereas this one will work perfectly:
 
     answerPtr := getAnswer()
     "answer = %d" printfln(answerPtr@)
+~~~
 
 However, the first version (returning the address of a local variable)
 might work sometimes: don't be surprised. If the memory address (on the stack
@@ -221,4 +242,3 @@ However, keep in mind that allocation is often not the first place to look
 if you want to optimize your application. Remember to always use a profiler
 (I find that valgrind + KCachegrind work particularly well with ooc code)
 to figure out where the hotspots are in your code.
-

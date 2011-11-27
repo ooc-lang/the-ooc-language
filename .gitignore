@@ -1,4 +1,6 @@
 .libs
+_build/
 *.swp
 *.swo
 *_tmp/
+.DS_Store

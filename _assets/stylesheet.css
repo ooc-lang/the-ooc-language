@@ -1,6 +1,6 @@
 
 @import url(http://fonts.googleapis.com/css?family=Radley:400&text=OC);
-@import url(http://fonts.googleapis.com/css?family=Lato400,700,900);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,900);
 
 /* Stylesheet */
 
@@ -36,6 +36,20 @@ h1, h2, h3, h4 {
 
 h1 > a, h2 > a, h3 > a, h4 > a {
     text-decoration: none;
+}
+
+body > section > h1 {
+    font-size: 2em;
+}
+
+section > section {
+    margin-top: 30px;
+    border-bottom: 1px solid #D9D9D9;
+    padding-bottom: 30px;
+}
+
+#TOC > ul > li > ul > li > ul {
+    display: none;
 }
 
 .highlight {

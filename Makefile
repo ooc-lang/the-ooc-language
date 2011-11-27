@@ -55,6 +55,7 @@ publish:
 	@cp $(BUILD_DIR)/index.html ./
 	@git add .
 	@git commit -m "Update the documentation."
+	@git push origin gh-pages
 
 clean:
 	@rm -rf $(TEMP_DIR) $(BUILD_DIR)

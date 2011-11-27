@@ -7,12 +7,16 @@ ASSETS_DIR=_assets
 MD_OUTPUT=documentation.md
 HTML_OUTPUT=index.html
 
-all: md2html build
+all: init md2html build
 	@echo '-- The documentation has been successfully generated.'
+
+init:
+	@mkdir -p $(BUILD_DIR)
 
 cprsrc:
 	@echo -n '-- Copying the required assets into the temp folder...'
 	@ditto 0*.md* $(TEMP_DIR)/
+	@cp $(ASSETS_DIR)/stylesheet.css $(TEMP_DIR)/
 	@echo ' Done.'
 
 concat: cprsrc
@@ -33,17 +37,20 @@ md2html: concat preprocess
 				--css=stylesheet.css \
 				--template=$(ASSETS_DIR)/template.html \
 				--include-before-body=_assets/header.html \
-				-o $(BUILD_DIR)/$(HTML_OUTPUT) \
+				-o $(TEMP_DIR)/$(HTML_OUTPUT) \
 				$(TEMP_DIR)/$(MD_OUTPUT)
 	@echo ' Done.'
 
 build:
 	@echo -n '-- Copying the required assets into the build folder...'
-	@cp $(ASSETS_DIR)/stylesheet.css $(BUILD_DIR)/
-	@cat $(TEMP_DIR)/highlight.css >> $(BUILD_DIR)/stylesheet.css
+	@cat $(TEMP_DIR)/highlight.css >> $(TEMP_DIR)/stylesheet.css
+	@git checkout gh-pages
+	@cp $(TEMP_DIR)/stylesheet.css ./
+	@cp $(TEMP_DIR)/index.html ./
+	@git commit -am "Update the documentation."
 	@echo ' Done.'
 
 clean:
-	@rm -rf $(TEMP_DIR)
+	@rm -rf $(TEMP_DIR) $(BUILD_DIR)
 
 .PHONY: all

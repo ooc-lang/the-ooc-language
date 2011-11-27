@@ -34,6 +34,8 @@ md2html: concat preprocess
 	@$(PANDOC)  --standalone \
 				--html5 \
 				--toc \
+				--section-divs \
+				--title="The ooc language" \
 				--css=stylesheet.css \
 				--template=$(ASSETS_DIR)/template.html \
 				--include-before-body=_assets/header.html \

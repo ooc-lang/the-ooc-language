@@ -10,7 +10,7 @@ body
     font-family: Georgia, serif;
     line-height: 1.6;
     width: 720px;
-    margin: 0 auto;
+    margin: 0 0 0 400px;
     color: #222;
 }
 
@@ -48,7 +48,30 @@ section > section {
     padding-bottom: 30px;
 }
 
+#TOC {
+    position: absolute;
+    top: 209px;
+    left: 0;
+    height: auto;
+    overflow: hidden;
+    padding: 20px;
+    font-size: 0.9em;
+    font-family: 'Lato';
+}
+
+#TOC ul {
+    padding-left: 20px;
+}
+
+#TOC > ul > li > ul > li {
+    width: 250px;
+}
+
 #TOC > ul > li > ul > li > ul {
+    display: none;
+}
+
+#TOC > ul > li:first-child {
     display: none;
 }
 

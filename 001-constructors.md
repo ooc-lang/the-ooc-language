@@ -2,9 +2,6 @@
 Constructors
 ============
 
-Intro
------
-
 In ooc, unlike Java/Scala/C++/C#, 'new' isn't a keyword, but a static method.
 
 For example:

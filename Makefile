@@ -56,6 +56,7 @@ publish:
 	@git add .
 	@git commit -m "Update the documentation."
 	@git push origin gh-pages
+	@git checkout master
 
 clean:
 	@rm -rf $(TEMP_DIR) $(BUILD_DIR)

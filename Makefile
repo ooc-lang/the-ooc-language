@@ -44,13 +44,17 @@ md2html: concat preprocess
 build:
 	@echo -n '-- Copying the required assets into the build folder...'
 	@cat $(TEMP_DIR)/highlight.css >> $(TEMP_DIR)/stylesheet.css
+	@cp $(TEMP_DIR)/index.html $(BUILD_DIR)/
+	@cp $(TEMP_DIR)/stylesheet.css $(BUILD_DIR)/
+	@echo ' Done.'
+
+publish:
 	@git checkout gh-pages
 	@rm -f stylesheet.css index.html
-	@cp $(TEMP_DIR)/stylesheet.css ./
-	@cp $(TEMP_DIR)/index.html ./
+	@cp $(BUILD_DIR)/stylesheet.css ./
+	@cp $(BUILD_DIR)/index.html ./
 	@git add .
 	@git commit -m "Update the documentation."
-	@echo ' Done.'
 
 clean:
 	@rm -rf $(TEMP_DIR) $(BUILD_DIR)

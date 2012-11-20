@@ -2,7 +2,7 @@
 
 ## status
 
-**In progress**, send feedback to amos@ofmlabs.org and mention 'ooc' in the subject.
+**In progress**, send feedback to <amos@lockfree.ch> and mention 'ooc' in the subject.
 
 Thanks a lot =)
 

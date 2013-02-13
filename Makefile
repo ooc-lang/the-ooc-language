@@ -1,5 +1,5 @@
 
-TEMP_DIR:=$(shell mktemp -d -t /tmp)
+TEMP_DIR:=$(shell mktemp -d)
 PANDOC=pandoc
 PREPROCESS=python _scripts/preprocess.py
 BUILD_DIR=_build
@@ -15,7 +15,7 @@ init:
 
 cprsrc:
 	@echo -n '-- Copying the required assets into the temp folder...'
-	@ditto 0*.md* $(TEMP_DIR)/
+	@cp 0*.md* $(TEMP_DIR)/
 	@cp $(ASSETS_DIR)/stylesheet.css $(TEMP_DIR)/
 	@echo ' Done.'
 

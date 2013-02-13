@@ -6,8 +6,9 @@ BUILD_DIR=_build
 ASSETS_DIR=_assets
 MD_OUTPUT=documentation.md
 HTML_OUTPUT=index.html
+RST_OUTPUT=index.rst
 
-all: init md2html build
+all: init md2html md2rst build
 	@echo '-- The documentation has been successfully generated.'
 
 init:
@@ -44,11 +45,23 @@ md2html: concat preprocess
 				$(TEMP_DIR)/$(MD_OUTPUT)
 	@echo ' Done.'
 
+md2rst: concat preprocess
+	@echo -n '-- Converting the Markdown document to HTML...'
+	@$(PANDOC)  --standalone \
+				-f markdown -t rst \
+				--toc \
+				--section-divs \
+				--title="The ooc language" \
+				-o $(TEMP_DIR)/$(RST_OUTPUT) \
+				$(TEMP_DIR)/$(MD_OUTPUT)
+	@echo ' Done.'
+
 build:
 	@echo -n '-- Copying the required assets into the build folder...'
 	@cat $(TEMP_DIR)/highlight.css >> $(TEMP_DIR)/stylesheet.css
 	@cp $(TEMP_DIR)/index.html $(BUILD_DIR)/
 	@cp $(TEMP_DIR)/stylesheet.css $(BUILD_DIR)/
+	@cp $(TEMP_DIR)/index.rst $(BUILD_DIR)/
 	@echo ' Done.'
 
 publish:

@@ -198,7 +198,7 @@ in an inherited class, such as:
     }
 ~~~
 
-Repeating the 'init~lr' definition in Add violates the Don't Repeat Yourself (DRI)
+Repeating the 'init~lr' definition in Add violates the Don't Repeat Yourself (DRY)
 principle. Besides, if functionality is added to the base BinaryOp init~lr, it
 wouldn't be replicated in Add init~lr.
 

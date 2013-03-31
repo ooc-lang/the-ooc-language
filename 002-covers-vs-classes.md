@@ -1,4 +1,3 @@
-
 When to use covers and classes
 ==============================
 
@@ -33,18 +32,17 @@ Classes are by-references. Which means every object is a reference. Doing that:
     }
 
     answer := Number new(42)
-    modify(answer) // does nothing
+    modifyRef(answer) // does nothing
     modifyInside(answer)
 ~~~
 
-What happens in 'modifyRef' is that we change what 'n' refers to in the
-modifyRef function. It doesn't modify what 'n' referred to in the first place,
-in this case the 'answer' variable we gave it as argument. So 'modifyRef' has
+What happens in 'modifyRef' is that we change the value of the parameter 'n'. 
+The code does not modify what 'n' was a reference to in the first place.
+In the example above the variable 'answer' is given as the argument and 'modifyRef' has
 no effect at all on 'answer'.
 
-However, in 'modifyInside', we modify the content of what 'n' refers to.
-Since 'n' refers to 'answer', the content of 'value' is modified, ie its value
-is changed to -1
+However, in 'modifyInside', we actually modify the content of what 'n' refers to.
+Since 'n' refers to 'answer', the code will modify its member 'value' and set it to -1.
 
 ### Covers ###
 

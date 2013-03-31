@@ -1,4 +1,3 @@
-
 When to use covers and classes
 ==============================
 
@@ -48,16 +47,16 @@ is changed to -1
 
 ### Covers ###
 
-Covers are trickier. There are two types of covers: primitive covers, and compound covers
+Covers are trickier. There are two types of covers: primitive covers and compound covers
 
-Primitive covers allow to add methods to an existing type. For implementations
-of ooc on top of C, it means you can do stuff like:
+Primitive covers allow to us to add methods to an existing underlying type. For implementations
+of ooc on top of C this means you can do stuff like:
 
 ~~~
     Int: cover from int
 ~~~
 
-And it's actually the way all C types are used from ooc.
+This is actually the way all C types are used within ooc.
 
 As a consequence, covers are by-value. Which means that
 

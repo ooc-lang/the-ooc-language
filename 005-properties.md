@@ -34,19 +34,7 @@ A dumb property
 ---------------
 
 Turning a regular variable declaration into a property is as simple
-as adding a pair of brackets {} after it.
-
-~~~
-    Tree: class {
-        age: Int {}
-    }
-~~~
-
-At this point, 'age' behaves exactly as a variable, except that instead
-of direct memory read/write, it's now modified via automatically-generated
-getters and setters.
-
-The above code is also equivalent to:
+as adding { get set } after it.
 
 ~~~
     Tree: class {
@@ -54,7 +42,11 @@ The above code is also equivalent to:
     }
 ~~~
 
-Or, if you prefer:
+At this point, 'age' behaves exactly as a variable, except that instead
+of direct memory read/write, it's now modified via automatically-generated
+getters and setters.
+
+The above code is equivalent to, if you prefer:
 
 ~~~
     Tree: class {

@@ -13,13 +13,13 @@ Amos Wenger aka [@nddrylliog](http://twitter.com/nddrylliog)
 Easy,
 
     $ make
-    
+
 will generate a single-page, HTML version of the documentation.
 
 Then,
 
     $ make publish
-    
+
 will switch to the `gh-pages` branch, commit the modifications and push the commits to `origin` (which may be your forked repository).
 
 ## todo
